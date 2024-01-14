@@ -10,8 +10,10 @@ upload_folder = os.path.join('static', 'uploads')
 
 app.config['UPLOAD'] = upload_folder
 
+
 def generate_custom_name(original_file_name):
     return "doObrobki" + pathlib.Path(original_file_name).suffix
+
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
