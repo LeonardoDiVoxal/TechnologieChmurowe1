@@ -36,10 +36,12 @@ def upload_file():
         for (x, y, w, h) in rects:
             cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
+        ile_osob = {'peopleCount': len(rects)}
+
         cv2.imwrite('static/uploads/PeopleDetected.png', image)
 
         img = os.path.join(app.config['UPLOAD'], 'PeopleDetected.png')
-        return render_template('image_render.html', img=img)
+        return render_template('image_render.html', img=img), ile_osob
     return render_template('image_render.html')
 
 
