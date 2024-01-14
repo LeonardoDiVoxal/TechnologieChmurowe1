@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import os
+import cv2
 import pathlib
 import peopleCounter
 
@@ -22,6 +23,20 @@ def upload_file():
         img = os.path.join(app.config['UPLOAD'], filename)
 
         # os.system('python peopleCounter.py')
+
+        image = cv2.imread('static/uploads/doObrobki.png')
+        # image = cv2.resize(image, (700, 400))
+
+        hog = cv2.HOGDescriptor()
+        hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+
+        # detect people in the image
+        (rects, weights) = hog.detectMultiScale(image, winStride=(2, 2), padding=(16, 16), scale=1.05)
+
+        for (x, y, w, h) in rects:
+            cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+        cv2.imwrite('static/uploads/PeopleDetected.png', image)
 
         img = os.path.join(app.config['UPLOAD'], 'PeopleDetected.png')
         return render_template('image_render.html', img=img)

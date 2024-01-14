@@ -13,8 +13,8 @@ api = Api(app)
 class PeopleCounter(Resource):
     def get(self):
         # load image
-        image = cv2.imread('airport_terminal1.jpg')
-        image = cv2.resize(image, (700, 400))
+        image = cv2.imread('static/uploads/doObrobki.png')
+        # image = cv2.resize(image, (700, 400))
 
         # detect people in the image
         (rects, weights) = hog.detectMultiScale(image, winStride=(2, 2), padding=(16, 16), scale=1.05)
