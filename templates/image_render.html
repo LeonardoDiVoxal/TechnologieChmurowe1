@@ -10,8 +10,14 @@
     <input type="submit"/>
 </form>
 
+<form action="{{ url_for("gfg")}}" method="post">
+<label for="linkdozdjecia">Link do zdjęcia:</label>
+<input type="text" id="linkdozdjecia" name="url" placeholder="link do zdjecia">
+<button type="submit">Wyślij</button>
+
 {% if img %}
 <h1>Rendered Image</h1>
+<p>Ilość osób na zdjęciu: {{ile_osob}}</p>
 <img src="{{img}}">
 {% else %}
 <h1>Image will be render here...</h1>
