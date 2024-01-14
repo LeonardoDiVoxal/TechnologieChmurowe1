@@ -8,6 +8,8 @@ hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
 app = Flask(__name__)
 api = Api(app)
+
+
 class PeopleCounter(Resource):
     def get(self):
         # load image
